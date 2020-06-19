@@ -15,4 +15,7 @@ git submodule update --init --recursive
     cd -
     docker cp "${container_id}:/build/${bin}" "$name"
     docker rm -v "$container_id"
+    echo
+    file "$name"
+    ls -lah "$name"
 )
