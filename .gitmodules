@@ -1,0 +1,3 @@
+[submodule "jpegoptim-musl-gcc/jpegoptim"]
+	path = jpegoptim-musl-gcc/src
+	url = https://github.com/joshuarli/jpegoptim
