@@ -1,7 +1,7 @@
-FROM base-alpine-3.12-musl-gcc
+FROM base-debian-10-glibc-gcc
 
-RUN apk add --no-cache \
-    libjpeg-turbo-dev libjpeg-turbo-static
+RUN apt-get install -y --no-install-recommends \
+    libjpeg-dev
 
 COPY src /build
 WORKDIR /build
