@@ -8,7 +8,7 @@ RUN apt-get install -y --no-install-recommends \
 
 COPY src /build
 WORKDIR /build
-RUN CFLAGS="-O3 -static -flto" \
+RUN CFLAGS="-O3 -static -flto -pipe" \
     ./configure \
     && make \
     && strip -s ./pngquant
