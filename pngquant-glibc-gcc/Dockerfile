@@ -1,9 +1,4 @@
-FROM debian:10-slim
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    make \
-    pkg-config
+FROM base-debian-10-glibc-gcc
 
 RUN apt-get install -y --no-install-recommends \
     bash \
