@@ -8,6 +8,6 @@ RUN apt-get install -y --no-install-recommends \
 
 COPY src /build
 WORKDIR /build
-RUN CFLAGS="-O3 -static -flto -pipe" ./configure
+RUN CFLAGS="-O3 -flto -pipe" LDFLAGS="-static" ./configure
 RUN make -j"$(nproc)" \
     && strip -s ./pngquant

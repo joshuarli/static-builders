@@ -25,9 +25,7 @@ RUN curl -sL https://github.com/libvips/libvips/releases/download/v8.9.2/vips-8.
 
 # TODO: Add --disable-deprecated
 # Blocked by https://github.com/libvips/libvips/pull/1593
-
-# XXX: -static doesn't work here, I'm using staticx to make the final vips binary static.
-# .staticx.prog: unknown action "/tmp/staticx-BPJkll/.staticx.prog"
+# XXX: LDFLAGS="-static" doesn't work here. I'm using staticx to make the final vips binary static.
 RUN CFLAGS="-O3 -flto -pipe" CXXFLAGS="-O3 -flto -pipe" \
     ./configure \
         --disable-shared \
