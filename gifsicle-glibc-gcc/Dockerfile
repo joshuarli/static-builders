@@ -4,9 +4,8 @@ RUN apt-get install -y --no-install-recommends \
     libc-dev \
     automake
 
+COPY src /build
 WORKDIR /build
-
-RUN curl -sL https://github.com/kohler/gifsicle/archive/v1.92.tar.gz | tar -xz -f- --strip-components=1 -C .
 
 RUN autoreconf -i \
     && CFLAGS="-O3 -flto -pipe" LDFLAGS="-static" ./configure \
