@@ -1,7 +1,8 @@
 FROM base-debian-bullseye-20200607-glibc-gcc
 
 RUN apt-get install -y --no-install-recommends \
-    libjpeg-dev
+    libjpeg-dev \
+    && rm -rf /var/lib/apt/lists
 
 COPY src /build
 WORKDIR /build

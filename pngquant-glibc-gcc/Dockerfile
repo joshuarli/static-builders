@@ -4,7 +4,8 @@ RUN apt-get install -y --no-install-recommends \
     bash \
     libpng-dev \
     zlib1g-dev \
-    libimagequant-dev
+    libimagequant-dev \
+    && rm -rf /var/lib/apt/lists
 
 COPY src /build
 WORKDIR /build

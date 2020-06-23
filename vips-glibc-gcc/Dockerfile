@@ -18,7 +18,8 @@ RUN apt-get install -y --no-install-recommends \
     libpng-dev \
     libimagequant-dev \
     libexif-dev \
-    liborc-0.4-dev
+    liborc-0.4-dev \
+    && rm -rf /var/lib/apt/lists
 
 # TODO: Add --disable-deprecated
 # Blocked by https://github.com/libvips/libvips/pull/1593
