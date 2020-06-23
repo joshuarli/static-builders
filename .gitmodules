@@ -1,3 +1,0 @@
-[submodule "minify-go1.14/minify-cli"]
-	path = minify-go1.14/src
-	url = https://github.com/joshuarli/minify-cli
