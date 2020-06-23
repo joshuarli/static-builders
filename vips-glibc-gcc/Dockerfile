@@ -19,11 +19,6 @@ RUN apt-get install -y --no-install-recommends \
 RUN python3 -m pip \
         --disable-pip-version-check --no-cache-dir install \
     'https://test-files.pythonhosted.org/packages/f5/65/cc5e23b63ddef8aa3b28d5457bfda3c1ff4bdd660236fb431102ee506e8b/staticx-0.10.0.346-py3-none-any.whl'
-
-RUN apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl
-
 WORKDIR /build
 
 RUN curl -sL https://github.com/libvips/libvips/releases/download/v8.9.2/vips-8.9.2.tar.gz | tar -xz -f- --strip-components=1 -C .

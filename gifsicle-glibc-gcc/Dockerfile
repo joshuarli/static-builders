@@ -1,10 +1,6 @@
 FROM base-debian-10-glibc-gcc
 
 RUN apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl
-
-RUN apt-get install -y --no-install-recommends \
     libc-dev \
     automake
 
