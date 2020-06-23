@@ -1,4 +1,4 @@
-FROM base-debian-10-glibc-gcc
+FROM base-debian-bullseye-20200607-glibc-gcc
 
 RUN apt-get install -y --no-install-recommends \
     g++ \
