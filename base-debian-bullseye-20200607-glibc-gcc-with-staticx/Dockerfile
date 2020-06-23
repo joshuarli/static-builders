@@ -1,6 +1,7 @@
 FROM base-debian-bullseye-20200607-glibc-gcc
 
 RUN apt-get install -y --no-install-recommends \
+    python3-minimal \
     python3-pip \
     python3-setuptools \
     patchelf
