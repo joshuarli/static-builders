@@ -1,6 +1,16 @@
 FROM base-debian-bullseye-20200607-glibc-gcc-with-staticx
 
 RUN apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl
+
+WORKDIR /build
+RUN curl -sL https://github.com/libvips/libvips/releases/download/v8.9.2/vips-8.9.2.tar.gz | tar -xz -f- --strip-components=1 -C . \
+    && apt-get purge -y --auto-remove \
+        ca-certificates \
+        curl
+
+RUN apt-get install -y --no-install-recommends \
     g++ \
     libglib2.0-dev \
     libexpat1-dev \
@@ -9,9 +19,6 @@ RUN apt-get install -y --no-install-recommends \
     libimagequant-dev \
     libexif-dev \
     liborc-0.4-dev
-
-WORKDIR /build
-RUN curl -sL https://github.com/libvips/libvips/releases/download/v8.9.2/vips-8.9.2.tar.gz | tar -xz -f- --strip-components=1 -C .
 
 # TODO: Add --disable-deprecated
 # Blocked by https://github.com/libvips/libvips/pull/1593
