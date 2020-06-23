@@ -4,13 +4,14 @@ set -e
 
 git submodule update --init --recursive
 
-(
-    cd "$1"
-    bin="${1%%-*}"
-    docker build -t "$1" .
+for d in "$@"; do
+    (
+    cd "$d"
+    bin="${d%%-*}"
+    docker build -t "$d" .
     [ "$bin" = 'base' ] && exit 0
-    container_id="$(docker create $1)"
-    name="$1"
+    container_id="$(docker create $d)"
+    name="$d"
     if [ -d src ]; then
         (
             cd src
@@ -24,4 +25,5 @@ git submodule update --init --recursive
     echo
     file "$name"
     ls -lah "$name"
-)
+    )
+done
