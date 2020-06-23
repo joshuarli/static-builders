@@ -2,24 +2,13 @@
 
 set -e
 
-git submodule update --init --recursive
-
-for d in "$@"; do
+for name in "$@"; do
     (
-    cd "$d"
-    bin="${d%%-*}"
-    docker build -t "$d" .
+    cd "$name"
+    bin="${name%%-*}"
+    docker build -t "$name" .
     [ "$bin" = 'base' ] && exit 0
-    container_id="$(docker create $d)"
-    name="$d"
-    if [ -d src ]; then
-        (
-            cd src
-            git_nearest_tag="$(git describe --tags --abbrev=0)"
-            git_head_commit="$(git log -1 --pretty=format:'%h')"
-            name="${1}-git-${git_nearest_tag}-${git_head_commit}"
-        )
-    fi
+    container_id="$(docker create $name)"
     docker cp "${container_id}:/build/${bin}" "$name"
     docker rm -v "$container_id"
     echo
