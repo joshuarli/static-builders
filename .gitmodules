@@ -1,6 +1,3 @@
-[submodule "pngquant-musl-gcc/pngquant"]
-	path = pngquant-glibc-gcc/src
-	url = https://github.com/joshuarli/pngquant
 [submodule "minify-go1.14/minify-cli"]
 	path = minify-go1.14/src
 	url = https://github.com/joshuarli/minify-cli
