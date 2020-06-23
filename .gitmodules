@@ -1,6 +1,3 @@
-[submodule "jpegoptim-musl-gcc/jpegoptim"]
-	path = jpegoptim-glibc-gcc/src
-	url = https://github.com/joshuarli/jpegoptim
 [submodule "pngquant-musl-gcc/pngquant"]
 	path = pngquant-glibc-gcc/src
 	url = https://github.com/joshuarli/pngquant
