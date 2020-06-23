@@ -41,4 +41,5 @@ RUN cd tools \
     && make -j"$(nproc)" vips
 
 RUN cd tools \
-    && staticx vips ../vips
+    && staticx vips ../vips \
+    && strip -s ../vips
