@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+container_id="$(docker create -v "${1}:/tmp/${1}" vips:latest --vips-progress copy "/tmp/${1}" "/tmp/${2}")"
+docker start -a "$container_id"
+echo "container exited with $(docker wait "$container_id")"
+docker cp "${container_id}:/tmp/${2}" "$2"
+docker rm -v "$container_id" >/dev/null

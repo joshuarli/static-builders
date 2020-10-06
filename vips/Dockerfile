@@ -1,7 +1,6 @@
-FROM base-debian-glibc-gcc-staticx
+FROM base-debian-glibc-gcc-staticx AS builder
 
 # Don't care about layer caching, because I'm only using docker for building.
-# TODO: builder stage + final scratch image + publish
 RUN apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
@@ -21,6 +20,7 @@ RUN apt-get install -y --no-install-recommends \
 
 # TODO: libspng build with meson, miniz to replace libpng-dev.
 # https://github.com/randy408/libspng/blob/master/docs/build.md#meson
+# Then, publish the final image somewhere.
 
 WORKDIR /build
 RUN curl -sL https://github.com/libvips/libvips/releases/download/v8.10.1/vips-8.10.1.tar.gz | \
@@ -47,5 +47,12 @@ RUN cd tools \
     && make -j"$(nproc)" vips
 
 RUN cd tools \
-    && staticx vips ../vips \
-    && strip -s ../vips
+    && staticx vips /bin/vips \
+    && strip -s /bin/vips
+
+FROM scratch
+COPY --from=builder /bin/vips /bin/vips
+# This is a nice hack to mkdir /tmp in a scratch image.
+WORKDIR /tmp/
+ENTRYPOINT ["/bin/vips"]
+CMD ["--help"]
